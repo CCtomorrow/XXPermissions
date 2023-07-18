@@ -36,7 +36,7 @@ import java.util.List;
  *    time   : 2021/01/04
  *    desc   : 权限申请拦截器
  */
-public final class PermissionInterceptor implements IPermissionInterceptor {
+public final class PermissionInterceptor extends IPermissionInterceptor {
 
     public static final Handler HANDLER = new Handler(Looper.getMainLooper());
 

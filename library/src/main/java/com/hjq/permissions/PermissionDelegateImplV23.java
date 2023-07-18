@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 
 /**
  *    author : Android 轮子哥
@@ -15,11 +13,10 @@ import android.support.annotation.RequiresApi;
  *    time   : 2022/06/11
  *    desc   : Android 6.0 权限委托实现
  */
-@RequiresApi(api = AndroidVersion.ANDROID_6)
 class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
 
    @Override
-   public boolean isGrantedPermission(@NonNull Context context, @NonNull String permission) {
+   public boolean isGrantedPermission(Context context, String permission) {
       // 向下兼容 Android 13 新权限
       if (!AndroidVersion.isAndroid13()) {
 
@@ -131,7 +128,7 @@ class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
    }
 
    @Override
-   public boolean isPermissionPermanentDenied(@NonNull Activity activity, @NonNull String permission) {
+   public boolean isPermissionPermanentDenied(Activity activity, String permission) {
       // 向下兼容 Android 13 新权限
       if (!AndroidVersion.isAndroid13()) {
 
@@ -227,7 +224,7 @@ class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
    }
 
    @Override
-   public Intent getPermissionIntent(@NonNull Context context, @NonNull String permission) {
+   public Intent getPermissionIntent(Context context, String permission) {
       if (PermissionUtils.equalsPermission(permission, Permission.WRITE_SETTINGS)) {
          return getSettingPermissionIntent(context);
       }
@@ -246,7 +243,7 @@ class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
    /**
     * 是否有系统设置权限
     */
-   private static boolean isGrantedSettingPermission(@NonNull Context context) {
+   private static boolean isGrantedSettingPermission(Context context) {
       if (AndroidVersion.isAndroid6()) {
          return Settings.System.canWrite(context);
       }
@@ -256,7 +253,7 @@ class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
    /**
     * 获取系统设置权限界面意图
     */
-   private static Intent getSettingPermissionIntent(@NonNull Context context) {
+   private static Intent getSettingPermissionIntent(Context context) {
       Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
       intent.setData(PermissionUtils.getPackageNameUri(context));
       if (!PermissionUtils.areActivityIntent(context, intent)) {
@@ -268,14 +265,14 @@ class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
    /**
     * 是否有勿扰模式权限
     */
-   private static boolean isGrantedNotDisturbPermission(@NonNull Context context) {
+   private static boolean isGrantedNotDisturbPermission(Context context) {
       return context.getSystemService(NotificationManager.class).isNotificationPolicyAccessGranted();
    }
 
    /**
     * 获取勿扰模式设置界面意图
     */
-   private static Intent getNotDisturbPermissionIntent(@NonNull Context context) {
+   private static Intent getNotDisturbPermissionIntent(Context context) {
       Intent intent = null;
 
       // issue 地址：https://github.com/getActivity/XXPermissions/issues/190
@@ -302,14 +299,14 @@ class PermissionDelegateImplV23 extends PermissionDelegateImplV21 {
    /**
     * 是否忽略电池优化选项
     */
-   private static boolean isGrantedIgnoreBatteryPermission(@NonNull Context context) {
+   private static boolean isGrantedIgnoreBatteryPermission(Context context) {
       return context.getSystemService(PowerManager.class).isIgnoringBatteryOptimizations(context.getPackageName());
    }
 
    /**
     * 获取电池优化选项设置界面意图
     */
-   private static Intent getIgnoreBatteryPermissionIntent(@NonNull Context context) {
+   private static Intent getIgnoreBatteryPermissionIntent(Context context) {
       Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
       intent.setData(PermissionUtils.getPackageNameUri(context));
 

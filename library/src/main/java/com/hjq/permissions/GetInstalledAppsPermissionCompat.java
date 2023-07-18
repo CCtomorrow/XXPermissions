@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 
 /**
  *    author : Android 轮子哥
@@ -21,7 +19,7 @@ final class GetInstalledAppsPermissionCompat {
     private static final String MIUI_OP_GET_INSTALLED_APPS_FIELD_NAME = "OP_GET_INSTALLED_APPS";
     private static final int MIUI_OP_GET_INSTALLED_APPS_DEFAULT_VALUE = 10022;
 
-    static boolean isGrantedPermission(@NonNull Context context) {
+    static boolean isGrantedPermission(Context context) {
         if (!AndroidVersion.isAndroid4_4()) {
             return true;
         }
@@ -45,7 +43,7 @@ final class GetInstalledAppsPermissionCompat {
         return true;
     }
 
-    static boolean isPermissionPermanentDenied(@NonNull Activity activity) {
+    static boolean isPermissionPermanentDenied(Activity activity) {
         if (!AndroidVersion.isAndroid4_4()) {
             return false;
         }
@@ -68,7 +66,7 @@ final class GetInstalledAppsPermissionCompat {
         return false;
     }
 
-    static Intent getPermissionIntent(@NonNull Context context) {
+    static Intent getPermissionIntent(Context context) {
         if (PhoneRomUtils.isMiui()) {
             Intent intent = null;
             if (PhoneRomUtils.isMiuiOptimization()) {
@@ -85,7 +83,6 @@ final class GetInstalledAppsPermissionCompat {
     /**
      * 判断是否支持获取应用列表权限
      */
-    @RequiresApi(api = AndroidVersion.ANDROID_6)
     private static boolean isSupportGetInstalledAppsPermission(Context context) {
         try {
             PermissionInfo permissionInfo = context.getPackageManager().getPermissionInfo(Permission.GET_INSTALLED_APPS, 0);

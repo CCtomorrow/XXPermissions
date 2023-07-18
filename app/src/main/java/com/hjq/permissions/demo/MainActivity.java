@@ -35,10 +35,10 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/XXPermissions
- *    time   : 2018/06/15
- *    desc   : 权限申请演示
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/XXPermissions
+ * time   : 2018/06/15
+ * desc   : 权限申请演示
  */
 public final class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -91,6 +91,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_group_permission) {
@@ -108,6 +113,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             }
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -129,6 +139,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_sensors_permission) {
@@ -147,6 +162,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_activity_recognition_permission) {
@@ -164,6 +184,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                             addCountStepListener();
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -192,7 +217,12 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                         return;
                                     }
                                     toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
-                                    PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                                 }
                             });
                 }
@@ -221,7 +251,12 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                         return;
                                     }
                                     toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
-                                    PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                                 }
                             });
                 }
@@ -254,13 +289,18 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                         return;
                                     }
                                     toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
-                                    PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                                     new Thread(new Runnable() {
                                         @Override
                                         public void run() {
                                             getAllImagesFromGallery();
                                         }
                                     }).start();
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                                 }
                             });
                 }
@@ -294,7 +334,12 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                         return;
                                     }
                                     toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
-                                    PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                                 }
                             });
                 }
@@ -326,7 +371,12 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                         return;
                                     }
                                     toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
-                                    PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                                 }
                             });
                 }
@@ -347,6 +397,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_system_alert_window_permission) {
@@ -363,6 +418,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             }
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -381,6 +441,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_notification_service_permission) {
@@ -397,6 +462,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             }
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -423,7 +493,12 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                         return;
                                     }
                                     toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
-                                    PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                }
+
+                                @Override
+                                public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                                 }
                             });
                 }
@@ -447,6 +522,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                                 toggleNotificationListenerService();
                             }
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_usage_stats_permission) {
@@ -463,6 +543,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             }
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -481,6 +566,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_access_notification_policy_permission) {
@@ -497,6 +587,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             }
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -515,6 +610,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_picture_in_picture_permission) {
@@ -531,6 +631,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             }
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -549,6 +654,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                         }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
+                        }
                     });
 
         } else if (viewId == R.id.btn_main_request_get_installed_apps_permission) {
@@ -566,6 +676,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                             toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
                                     PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
                             getAppList();
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissions, boolean doNotAskAgain) {
+
                         }
                     });
 
@@ -653,7 +768,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
             }
 
             if (latLong[0] != 0 && latLong[1] != 0) {
-                Log.i("XXPermissions", "获取到图片的经纬度：" + filePath + "，" +  Arrays.toString(latLong));
+                Log.i("XXPermissions", "获取到图片的经纬度：" + filePath + "，" + Arrays.toString(latLong));
                 Log.i("XXPermissions", "图片经纬度所在的地址：" + latLongToAddressString(latLong[0], latLong[1]));
             } else {
                 Log.i("XXPermissions", "该图片获取不到经纬度：" + filePath);
@@ -749,7 +864,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                 Log.i("XXPermissions", "应用包名：" + info.packageName);
             }
         } catch (Throwable t) {
-            t.printStackTrace();;
+            t.printStackTrace();
         }
     }
 }

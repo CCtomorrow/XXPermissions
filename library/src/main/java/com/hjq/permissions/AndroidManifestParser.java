@@ -2,7 +2,6 @@ package com.hjq.permissions;
 
 import android.content.Context;
 import android.content.res.XmlResourceParser;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -50,8 +49,7 @@ final class AndroidManifestParser {
     * @param context          上下文
     * @param apkCookie        要解析 apk 的 cookie
     */
-   @NonNull
-   static AndroidManifestInfo parseAndroidManifest(@NonNull Context context, int apkCookie) throws IOException, XmlPullParserException {
+   static AndroidManifestInfo parseAndroidManifest(Context context, int apkCookie) throws IOException, XmlPullParserException {
       AndroidManifestInfo manifestInfo = new AndroidManifestInfo();
       XmlResourceParser parser = context.getAssets().
               openXmlResourceParser(apkCookie, ANDROID_MANIFEST_FILE_NAME);
@@ -101,14 +99,14 @@ final class AndroidManifestParser {
       return manifestInfo;
    }
 
-   private static AndroidManifestInfo.UsesSdkInfo parseUsesSdkFromXml(@NonNull XmlResourceParser parser) {
+   private static AndroidManifestInfo.UsesSdkInfo parseUsesSdkFromXml(XmlResourceParser parser) {
       AndroidManifestInfo.UsesSdkInfo usesSdkInfo = new AndroidManifestInfo.UsesSdkInfo();
       usesSdkInfo.minSdkVersion = parser.getAttributeIntValue(ANDROID_NAMESPACE_URI,
               ATTR_MIN_SDK_VERSION, 0);
       return usesSdkInfo;
    }
 
-   private static AndroidManifestInfo.PermissionInfo parsePermissionFromXml(@NonNull XmlResourceParser parser) {
+   private static AndroidManifestInfo.PermissionInfo parsePermissionFromXml(XmlResourceParser parser) {
       AndroidManifestInfo.PermissionInfo permissionInfo = new AndroidManifestInfo.PermissionInfo();
       permissionInfo.name = parser.getAttributeValue(ANDROID_NAMESPACE_URI, ATTR_NAME);
       permissionInfo.maxSdkVersion = parser.getAttributeIntValue(ANDROID_NAMESPACE_URI,
@@ -118,7 +116,7 @@ final class AndroidManifestParser {
       return permissionInfo;
    }
 
-   private static AndroidManifestInfo.ApplicationInfo parseApplicationFromXml(@NonNull XmlResourceParser parser) {
+   private static AndroidManifestInfo.ApplicationInfo parseApplicationFromXml(XmlResourceParser parser) {
       AndroidManifestInfo.ApplicationInfo applicationInfo = new AndroidManifestInfo.ApplicationInfo();
       applicationInfo.name = parser.getAttributeValue(ANDROID_NAMESPACE_URI, ATTR_NAME);
       applicationInfo.requestLegacyExternalStorage = parser.getAttributeBooleanValue(
@@ -126,7 +124,7 @@ final class AndroidManifestParser {
       return applicationInfo;
    }
 
-   private static AndroidManifestInfo.ActivityInfo parseActivityFromXml(@NonNull XmlResourceParser parser) {
+   private static AndroidManifestInfo.ActivityInfo parseActivityFromXml(XmlResourceParser parser) {
       AndroidManifestInfo.ActivityInfo activityInfo = new AndroidManifestInfo.ActivityInfo();
       activityInfo.name = parser.getAttributeValue(ANDROID_NAMESPACE_URI, ATTR_NAME);
       activityInfo.supportsPictureInPicture = parser.getAttributeBooleanValue(
@@ -134,7 +132,7 @@ final class AndroidManifestParser {
       return activityInfo;
    }
 
-   private static AndroidManifestInfo.ServiceInfo parseServerFromXml(@NonNull XmlResourceParser parser) {
+   private static AndroidManifestInfo.ServiceInfo parseServerFromXml(XmlResourceParser parser) {
       AndroidManifestInfo.ServiceInfo serviceInfo = new AndroidManifestInfo.ServiceInfo();
       serviceInfo.name = parser.getAttributeValue(ANDROID_NAMESPACE_URI, ATTR_NAME);
       serviceInfo.permission = parser.getAttributeValue(ANDROID_NAMESPACE_URI, ATTR_PERMISSION);

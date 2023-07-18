@@ -5,8 +5,6 @@ import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 
 /**
  *    author : Android 轮子哥
@@ -14,11 +12,10 @@ import android.support.annotation.RequiresApi;
  *    time   : 2022/06/11
  *    desc   : Android 5.0 权限委托实现
  */
-@RequiresApi(api = AndroidVersion.ANDROID_5)
 class PermissionDelegateImplV21 extends PermissionDelegateImplV19 {
 
    @Override
-   public boolean isGrantedPermission(@NonNull Context context, @NonNull String permission) {
+   public boolean isGrantedPermission(Context context, String permission) {
       // 检测获取使用统计权限
       if (PermissionUtils.equalsPermission(permission, Permission.PACKAGE_USAGE_STATS)) {
          return isGrantedPackagePermission(context);
@@ -27,7 +24,7 @@ class PermissionDelegateImplV21 extends PermissionDelegateImplV19 {
    }
 
    @Override
-   public boolean isPermissionPermanentDenied(@NonNull Activity activity, @NonNull String permission) {
+   public boolean isPermissionPermanentDenied(Activity activity, String permission) {
       if (PermissionUtils.equalsPermission(permission, Permission.PACKAGE_USAGE_STATS)) {
          return false;
       }
@@ -35,7 +32,7 @@ class PermissionDelegateImplV21 extends PermissionDelegateImplV19 {
    }
 
    @Override
-   public Intent getPermissionIntent(@NonNull Context context, @NonNull String permission) {
+   public Intent getPermissionIntent(Context context, String permission) {
       if (PermissionUtils.equalsPermission(permission, Permission.PACKAGE_USAGE_STATS)) {
          return getPackagePermissionIntent(context);
       }
@@ -45,14 +42,14 @@ class PermissionDelegateImplV21 extends PermissionDelegateImplV19 {
    /**
     * 是否有使用统计权限
     */
-   private static boolean isGrantedPackagePermission(@NonNull Context context) {
+   private static boolean isGrantedPackagePermission(Context context) {
       return PermissionUtils.checkOpNoThrow(context, AppOpsManager.OPSTR_GET_USAGE_STATS);
    }
 
    /**
     * 获取使用统计权限设置界面意图
     */
-   private static Intent getPackagePermissionIntent(@NonNull Context context) {
+   private static Intent getPackagePermissionIntent(Context context) {
       Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
       if (AndroidVersion.isAndroid10()) {
          // 经过测试，只有在 Android 10 及以上加包名才有效果

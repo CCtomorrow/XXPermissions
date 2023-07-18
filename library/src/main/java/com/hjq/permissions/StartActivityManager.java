@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 /**
  *    author : Android 轮子哥
@@ -17,7 +15,7 @@ final class StartActivityManager {
 
    private static final String SUB_INTENT_KEY = "sub_intent_key";
 
-   static Intent getSubIntentInMainIntent(@NonNull Intent mainIntent) {
+   static Intent getSubIntentInMainIntent(Intent mainIntent) {
       Intent subIntent;
       if (AndroidVersion.isAndroid13()) {
          subIntent = mainIntent.getParcelableExtra(SUB_INTENT_KEY, Intent.class);
@@ -27,7 +25,7 @@ final class StartActivityManager {
       return subIntent;
    }
 
-   static Intent getDeepSubIntent(@NonNull Intent superIntent) {
+   static Intent getDeepSubIntent(Intent superIntent) {
       Intent subIntent = getSubIntentInMainIntent(superIntent);
       if (subIntent != null) {
          return getDeepSubIntent(subIntent);
@@ -35,7 +33,7 @@ final class StartActivityManager {
       return superIntent;
    }
 
-   static Intent addSubIntentToMainIntent(@Nullable Intent mainIntent, @Nullable Intent subIntent) {
+   static Intent addSubIntentToMainIntent(Intent mainIntent, Intent subIntent) {
       if (mainIntent == null && subIntent != null) {
          return subIntent;
       }
@@ -47,23 +45,23 @@ final class StartActivityManager {
       return mainIntent;
    }
 
-   static boolean startActivity(@NonNull Context context, Intent intent) {
+   static boolean startActivity(Context context, Intent intent) {
       return startActivity(new StartActivityDelegateContextImpl(context), intent);
    }
 
-   static boolean startActivity(@NonNull Activity activity, Intent intent) {
+   static boolean startActivity(Activity activity, Intent intent) {
       return startActivity(new StartActivityDelegateActivityImpl(activity), intent);
    }
 
-   static boolean startActivity(@NonNull Fragment fragment, Intent intent) {
+   static boolean startActivity(Fragment fragment, Intent intent) {
       return startActivity(new StartActivityDelegateFragmentImpl(fragment), intent);
    }
 
-   static boolean startActivity(@NonNull android.support.v4.app.Fragment fragment, Intent intent) {
+   static boolean startActivity(android.support.v4.app.Fragment fragment, Intent intent) {
       return startActivity(new StartActivityDelegateSupportFragmentImpl(fragment), intent);
    }
 
-   static boolean startActivity(@NonNull IStartActivityDelegate delegate, @NonNull Intent intent) {
+   static boolean startActivity(IStartActivityDelegate delegate, Intent intent) {
       try {
          delegate.startActivity(intent);
          return true;
@@ -77,19 +75,19 @@ final class StartActivityManager {
       }
    }
 
-   static boolean startActivityForResult(@NonNull Activity activity, @NonNull Intent intent, int requestCode) {
+   static boolean startActivityForResult(Activity activity, Intent intent, int requestCode) {
       return startActivityForResult(new StartActivityDelegateActivityImpl(activity), intent, requestCode);
    }
 
-   static boolean startActivityForResult(@NonNull Fragment fragment, @NonNull Intent intent, int requestCode) {
+   static boolean startActivityForResult(Fragment fragment, Intent intent, int requestCode) {
       return startActivityForResult(new StartActivityDelegateFragmentImpl(fragment), intent, requestCode);
    }
 
-   static boolean startActivityForResult(@NonNull android.support.v4.app.Fragment fragment, @NonNull Intent intent, int requestCode) {
+   static boolean startActivityForResult(android.support.v4.app.Fragment fragment, Intent intent, int requestCode) {
       return startActivityForResult(new StartActivityDelegateSupportFragmentImpl(fragment), intent, requestCode);
    }
 
-   static boolean startActivityForResult(@NonNull IStartActivityDelegate delegate, @NonNull Intent intent, int requestCode) {
+   static boolean startActivityForResult(IStartActivityDelegate delegate, Intent intent, int requestCode) {
       try {
          delegate.startActivityForResult(intent, requestCode);
          return true;
@@ -105,26 +103,26 @@ final class StartActivityManager {
 
    private interface IStartActivityDelegate {
 
-      void startActivity(@NonNull Intent intent);
+      void startActivity(Intent intent);
 
-      void startActivityForResult(@NonNull Intent intent, int requestCode);
+      void startActivityForResult(Intent intent, int requestCode);
    }
 
    private static class StartActivityDelegateContextImpl implements IStartActivityDelegate {
 
       private final Context mContext;
 
-      private StartActivityDelegateContextImpl(@NonNull Context context) {
+      private StartActivityDelegateContextImpl(Context context) {
          mContext = context;
       }
 
       @Override
-      public void startActivity(@NonNull Intent intent) {
+      public void startActivity(Intent intent) {
          mContext.startActivity(intent);
       }
 
       @Override
-      public void startActivityForResult(@NonNull Intent intent, int requestCode) {
+      public void startActivityForResult(Intent intent, int requestCode) {
          Activity activity = PermissionUtils.findActivity(mContext);
          if (activity != null) {
             activity.startActivityForResult(intent, requestCode);
@@ -138,17 +136,17 @@ final class StartActivityManager {
 
       private final Activity mActivity;
 
-      private StartActivityDelegateActivityImpl(@NonNull Activity activity) {
+      private StartActivityDelegateActivityImpl(Activity activity) {
          mActivity = activity;
       }
 
       @Override
-      public void startActivity(@NonNull Intent intent) {
+      public void startActivity(Intent intent) {
          mActivity.startActivity(intent);
       }
 
       @Override
-      public void startActivityForResult(@NonNull Intent intent, int requestCode) {
+      public void startActivityForResult(Intent intent, int requestCode) {
          mActivity.startActivityForResult(intent, requestCode);
       }
    }
@@ -157,17 +155,17 @@ final class StartActivityManager {
 
       private final Fragment mFragment;
 
-      private StartActivityDelegateFragmentImpl(@NonNull Fragment fragment) {
+      private StartActivityDelegateFragmentImpl(Fragment fragment) {
          mFragment = fragment;
       }
 
       @Override
-      public void startActivity(@NonNull Intent intent) {
+      public void startActivity(Intent intent) {
          mFragment.startActivity(intent);
       }
 
       @Override
-      public void startActivityForResult(@NonNull Intent intent, int requestCode) {
+      public void startActivityForResult(Intent intent, int requestCode) {
          mFragment.startActivityForResult(intent, requestCode);
       }
    }
@@ -176,17 +174,17 @@ final class StartActivityManager {
 
       private final android.support.v4.app.Fragment mFragment;
 
-      private StartActivityDelegateSupportFragmentImpl(@NonNull android.support.v4.app.Fragment fragment) {
+      private StartActivityDelegateSupportFragmentImpl(android.support.v4.app.Fragment fragment) {
          mFragment = fragment;
       }
 
       @Override
-      public void startActivity(@NonNull Intent intent) {
+      public void startActivity(Intent intent) {
          mFragment.startActivity(intent);
       }
 
       @Override
-      public void startActivityForResult(@NonNull Intent intent, int requestCode) {
+      public void startActivityForResult(Intent intent, int requestCode) {
          mFragment.startActivityForResult(intent, requestCode);
       }
    }

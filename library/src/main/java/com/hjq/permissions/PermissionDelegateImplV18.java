@@ -3,8 +3,6 @@ package com.hjq.permissions;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 
 /**
  *    author : Android 轮子哥
@@ -12,11 +10,10 @@ import android.support.annotation.RequiresApi;
  *    time   : 2023/03/11
  *    desc   : Android 4.3 权限委托实现
  */
-@RequiresApi(api = AndroidVersion.ANDROID_4_3)
 class PermissionDelegateImplV18 extends PermissionDelegateImplV14 {
 
     @Override
-    public boolean isGrantedPermission(@NonNull Context context, @NonNull String permission) {
+    public boolean isGrantedPermission(Context context, String permission) {
         // 检测通知栏监听权限
         if (PermissionUtils.equalsPermission(permission, Permission.BIND_NOTIFICATION_LISTENER_SERVICE)) {
             return NotificationListenerPermissionCompat.isGrantedPermission(context);
@@ -25,7 +22,7 @@ class PermissionDelegateImplV18 extends PermissionDelegateImplV14 {
     }
 
     @Override
-    public boolean isPermissionPermanentDenied(@NonNull Activity activity, @NonNull String permission) {
+    public boolean isPermissionPermanentDenied(Activity activity, String permission) {
         if (PermissionUtils.equalsPermission(permission, Permission.BIND_NOTIFICATION_LISTENER_SERVICE)) {
             return false;
         }
@@ -33,7 +30,7 @@ class PermissionDelegateImplV18 extends PermissionDelegateImplV14 {
     }
 
     @Override
-    public Intent getPermissionIntent(@NonNull Context context, @NonNull String permission) {
+    public Intent getPermissionIntent(Context context, String permission) {
         if (PermissionUtils.equalsPermission(permission, Permission.BIND_NOTIFICATION_LISTENER_SERVICE)) {
             return NotificationListenerPermissionCompat.getPermissionIntent(context);
         }

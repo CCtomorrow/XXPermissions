@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
  */
 final class PermissionApi {
 
-    @NonNull
     private static final PermissionDelegate DELEGATE;
 
     static {
@@ -49,28 +47,28 @@ final class PermissionApi {
     /**
      * 判断某个权限是否授予
      */
-    static boolean isGrantedPermission(@NonNull Context context, @NonNull String permission) {
+    static boolean isGrantedPermission(Context context, String permission) {
         return DELEGATE.isGrantedPermission(context, permission);
     }
 
     /**
      * 判断某个权限是否被永久拒绝
      */
-    static boolean isPermissionPermanentDenied(@NonNull Activity activity, @NonNull String permission) {
+    static boolean isPermissionPermanentDenied(Activity activity, String permission) {
         return DELEGATE.isPermissionPermanentDenied(activity, permission);
     }
 
     /**
      * 获取权限设置页意图
      */
-    static Intent getPermissionIntent(@NonNull Context context, @NonNull String permission) {
+    static Intent getPermissionIntent(Context context, String permission) {
         return DELEGATE.getPermissionIntent(context, permission);
     }
 
     /**
      * 判断某个权限是否是特殊权限
      */
-    static boolean isSpecialPermission(@NonNull String permission) {
+    static boolean isSpecialPermission(String permission) {
         return PermissionUtils.isSpecialPermission(permission);
     }
 
@@ -93,7 +91,7 @@ final class PermissionApi {
     /**
      * 判断某些权限是否全部被授予
      */
-    static boolean isGrantedPermissions(@NonNull Context context, @NonNull List<String> permissions) {
+    static boolean isGrantedPermissions(Context context, List<String> permissions) {
         if (permissions.isEmpty()) {
             return false;
         }
@@ -110,8 +108,8 @@ final class PermissionApi {
     /**
      * 获取已经授予的权限
      */
-    static List<String> getGrantedPermissions(@NonNull Context context, @NonNull List<String> permissions) {
-        List<String> grantedPermission = new ArrayList<>(permissions.size());
+    static List<String> getGrantedPermissions(Context context, List<String> permissions) {
+        List<String> grantedPermission = new ArrayList<String>(permissions.size());
         for (String permission : permissions) {
             if (isGrantedPermission(context, permission)) {
                 grantedPermission.add(permission);
@@ -123,8 +121,8 @@ final class PermissionApi {
     /**
      * 获取已经拒绝的权限
      */
-    static List<String> getDeniedPermissions(@NonNull Context context, @NonNull List<String> permissions) {
-        List<String> deniedPermission = new ArrayList<>(permissions.size());
+    static List<String> getDeniedPermissions(Context context, List<String> permissions) {
+        List<String> deniedPermission = new ArrayList<String>(permissions.size());
         for (String permission : permissions) {
             if (!isGrantedPermission(context, permission)) {
                 deniedPermission.add(permission);
@@ -139,7 +137,7 @@ final class PermissionApi {
      * @param activity              Activity对象
      * @param permissions            请求的权限
      */
-    static boolean isPermissionPermanentDenied(@NonNull Activity activity, @NonNull List<String> permissions) {
+    static boolean isPermissionPermanentDenied(Activity activity, List<String> permissions) {
         for (String permission : permissions) {
             if (isPermissionPermanentDenied(activity, permission)) {
                 return true;
@@ -154,8 +152,8 @@ final class PermissionApi {
      * @param permissions           需要请求的权限组
      * @param grantResults          允许结果组
      */
-    static List<String> getDeniedPermissions(@NonNull List<String> permissions, @NonNull int[] grantResults) {
-        List<String> deniedPermissions = new ArrayList<>();
+    static List<String> getDeniedPermissions(List<String> permissions, int[] grantResults) {
+        List<String> deniedPermissions = new ArrayList<String>();
         for (int i = 0; i < grantResults.length; i++) {
             // 把没有授予过的权限加入到集合中
             if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
@@ -171,8 +169,8 @@ final class PermissionApi {
      * @param permissions       需要请求的权限组
      * @param grantResults      允许结果组
      */
-    static List<String> getGrantedPermissions(@NonNull List<String> permissions, @NonNull int[] grantResults) {
-        List<String> grantedPermissions = new ArrayList<>();
+    static List<String> getGrantedPermissions(List<String> permissions, int[] grantResults) {
+        List<String> grantedPermissions = new ArrayList<String>();
         for (int i = 0; i < grantResults.length; i++) {
             // 把授予过的权限加入到集合中
             if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {

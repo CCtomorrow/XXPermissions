@@ -4,7 +4,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 
 /**
  *    author : Android 轮子哥
@@ -17,7 +16,7 @@ final class NotificationPermissionCompat {
     private static final String OP_POST_NOTIFICATION_FIELD_NAME = "OP_POST_NOTIFICATION";
     private static final int OP_POST_NOTIFICATION_DEFAULT_VALUE = 11;
 
-    static boolean isGrantedPermission(@NonNull Context context) {
+    static boolean isGrantedPermission(Context context) {
         if (AndroidVersion.isAndroid7()) {
             return context.getSystemService(NotificationManager.class).areNotificationsEnabled();
         }
@@ -28,7 +27,7 @@ final class NotificationPermissionCompat {
         return true;
     }
 
-    static Intent getPermissionIntent(@NonNull Context context) {
+    static Intent getPermissionIntent(Context context) {
         Intent intent = null;
         if (AndroidVersion.isAndroid8()) {
             intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);

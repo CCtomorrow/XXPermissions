@@ -3,7 +3,6 @@ package com.hjq.permissions;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 
 /**
  *    author : Android 轮子哥
@@ -16,7 +15,7 @@ final class WindowPermissionCompat {
    private static final String OP_SYSTEM_ALERT_WINDOW_FIELD_NAME = "OP_SYSTEM_ALERT_WINDOW";
    private static final int OP_SYSTEM_ALERT_WINDOW_DEFAULT_VALUE = 24;
 
-   static boolean isGrantedPermission(@NonNull Context context) {
+   static boolean isGrantedPermission(Context context) {
       if (AndroidVersion.isAndroid6()) {
          return Settings.canDrawOverlays(context);
       }
@@ -31,7 +30,7 @@ final class WindowPermissionCompat {
       return true;
    }
 
-   static Intent getPermissionIntent(@NonNull Context context) {
+   static Intent getPermissionIntent(Context context) {
       if (AndroidVersion.isAndroid6()) {
          if (AndroidVersion.isAndroid11() && PhoneRomUtils.isMiui() && PhoneRomUtils.isMiuiOptimization()) {
             // 因为 Android 11 及后面的版本无法直接跳转到具体权限设置页面，只能跳转到悬浮窗权限应用列表，十分地麻烦的，这里做了一下简化
