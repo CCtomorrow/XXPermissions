@@ -281,15 +281,11 @@ final class PermissionIntentManager {
         if (PermissionUtils.areActivityIntent(context, intent)) {
             return intent;
         }
-        return getAndroidSettingAppIntent(context);
+        return getAndroidSettingAppIntent();
     }
 
     /** 跳转到系统设置页面 */
-    static Intent getAndroidSettingAppIntent(Context context) {
-        Intent intent = new Intent(Settings.ACTION_SETTINGS);
-        if (PermissionUtils.areActivityIntent(context, intent)) {
-            return intent;
-        }
-        return null;
+    static Intent getAndroidSettingAppIntent() {
+        return new Intent(Settings.ACTION_SETTINGS);
     }
 }

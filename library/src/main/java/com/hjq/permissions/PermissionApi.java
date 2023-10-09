@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/XXPermissions
- *    time   : 2021/12/31
- *    desc   : 权限判断类
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/XXPermissions
+ * time   : 2021/12/31
+ * desc   : 权限判断类
  */
 final class PermissionApi {
 
@@ -134,8 +134,8 @@ final class PermissionApi {
     /**
      * 在权限组中检查是否有某个权限是否被永久拒绝
      *
-     * @param activity              Activity对象
-     * @param permissions            请求的权限
+     * @param activity    Activity对象
+     * @param permissions 请求的权限
      */
     static boolean isPermissionPermanentDenied(Activity activity, List<String> permissions) {
         for (String permission : permissions) {
@@ -149,8 +149,8 @@ final class PermissionApi {
     /**
      * 获取没有授予的权限
      *
-     * @param permissions           需要请求的权限组
-     * @param grantResults          允许结果组
+     * @param permissions  需要请求的权限组
+     * @param grantResults 允许结果组
      */
     static List<String> getDeniedPermissions(List<String> permissions, int[] grantResults) {
         List<String> deniedPermissions = new ArrayList<String>();
@@ -166,8 +166,8 @@ final class PermissionApi {
     /**
      * 获取已授予的权限
      *
-     * @param permissions       需要请求的权限组
-     * @param grantResults      允许结果组
+     * @param permissions  需要请求的权限组
+     * @param grantResults 允许结果组
      */
     static List<String> getGrantedPermissions(List<String> permissions, int[] grantResults) {
         List<String> grantedPermissions = new ArrayList<String>();
