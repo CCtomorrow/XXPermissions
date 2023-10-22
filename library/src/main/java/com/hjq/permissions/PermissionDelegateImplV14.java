@@ -24,7 +24,7 @@ class PermissionDelegateImplV14 implements PermissionDelegate {
    }
 
    @Override
-   public boolean isPermissionPermanentDenied(Activity activity, String permission) {
+   public boolean isDoNotAskAgainPermission(Activity activity, String permission) {
       return false;
    }
 

@@ -19,7 +19,9 @@ final class PermissionApi {
     private static final PermissionDelegate DELEGATE;
 
     static {
-        if (AndroidVersion.isAndroid13()) {
+        if (AndroidVersion.isAndroid14()) {
+            DELEGATE = new PermissionDelegateImplV34();
+        } else if (AndroidVersion.isAndroid13()) {
             DELEGATE = new PermissionDelegateImplV33();
         } else if (AndroidVersion.isAndroid12()) {
             DELEGATE = new PermissionDelegateImplV31();
@@ -45,6 +47,13 @@ final class PermissionApi {
     }
 
     /**
+     * 获取某个权限的申请结果
+     */
+    static int getPermissionResult(Context context, String permission) {
+        return isGrantedPermission(context, permission) ? PackageManager.PERMISSION_GRANTED : PackageManager.PERMISSION_DENIED;
+    }
+
+    /**
      * 判断某个权限是否授予
      */
     static boolean isGrantedPermission(Context context, String permission) {
@@ -54,8 +63,8 @@ final class PermissionApi {
     /**
      * 判断某个权限是否被永久拒绝
      */
-    static boolean isPermissionPermanentDenied(Activity activity, String permission) {
-        return DELEGATE.isPermissionPermanentDenied(activity, permission);
+    static boolean isDoNotAskAgainPermission(Activity activity, String permission) {
+        return DELEGATE.isDoNotAskAgainPermission(activity, permission);
     }
 
     /**
@@ -69,7 +78,7 @@ final class PermissionApi {
      * 判断某个权限是否是特殊权限
      */
     static boolean isSpecialPermission(String permission) {
-        return PermissionUtils.isSpecialPermission(permission);
+        return Permission.isSpecialPermission(permission);
     }
 
     /**
@@ -137,9 +146,9 @@ final class PermissionApi {
      * @param activity    Activity对象
      * @param permissions 请求的权限
      */
-    static boolean isPermissionPermanentDenied(Activity activity, List<String> permissions) {
+    static boolean isDoNotAskAgainPermissions(Activity activity, List<String> permissions) {
         for (String permission : permissions) {
-            if (isPermissionPermanentDenied(activity, permission)) {
+            if (isDoNotAskAgainPermission(activity, permission)) {
                 return true;
             }
         }

@@ -22,11 +22,11 @@ class PermissionDelegateImplV18 extends PermissionDelegateImplV14 {
     }
 
     @Override
-    public boolean isPermissionPermanentDenied(Activity activity, String permission) {
+    public boolean isDoNotAskAgainPermission(Activity activity, String permission) {
         if (PermissionUtils.equalsPermission(permission, Permission.BIND_NOTIFICATION_LISTENER_SERVICE)) {
             return false;
         }
-        return super.isPermissionPermanentDenied(activity, permission);
+        return super.isDoNotAskAgainPermission(activity, permission);
     }
 
     @Override

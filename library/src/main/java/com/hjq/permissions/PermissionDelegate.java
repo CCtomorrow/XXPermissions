@@ -18,12 +18,13 @@ public interface PermissionDelegate {
    boolean isGrantedPermission(Context context, String permission);
 
    /**
-    * 判断某个权限是否永久拒绝了
+    * 判断某个权限是否勾选了不再询问
     */
-   boolean isPermissionPermanentDenied(Activity activity, String permission);
+   boolean isDoNotAskAgainPermission( Activity activity,  String permission);
 
    /**
     * 获取权限设置页的意图
     */
    Intent getPermissionIntent(Context context, String permission);
+
 }

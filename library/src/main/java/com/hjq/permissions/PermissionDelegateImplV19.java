@@ -39,13 +39,13 @@ class PermissionDelegateImplV19 extends PermissionDelegateImplV18 {
     }
 
     @Override
-    public boolean isPermissionPermanentDenied(Activity activity, String permission) {
+    public boolean isDoNotAskAgainPermission(Activity activity, String permission) {
         if (PermissionUtils.equalsPermission(permission, Permission.SYSTEM_ALERT_WINDOW)) {
             return false;
         }
 
         if (PermissionUtils.equalsPermission(permission, Permission.GET_INSTALLED_APPS)) {
-            return GetInstalledAppsPermissionCompat.isPermissionPermanentDenied(activity);
+            return GetInstalledAppsPermissionCompat.isDoNotAskAgainPermission(activity);
         }
 
         if (PermissionUtils.equalsPermission(permission, Permission.NOTIFICATION_SERVICE)) {
@@ -58,7 +58,7 @@ class PermissionDelegateImplV19 extends PermissionDelegateImplV18 {
                 return false;
             }
         }
-        return super.isPermissionPermanentDenied(activity, permission);
+        return super.isDoNotAskAgainPermission(activity, permission);
     }
 
     @Override

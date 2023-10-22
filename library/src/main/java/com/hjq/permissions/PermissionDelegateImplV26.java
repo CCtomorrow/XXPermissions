@@ -32,7 +32,7 @@ class PermissionDelegateImplV26 extends PermissionDelegateImplV23 {
    }
 
    @Override
-   public boolean isPermissionPermanentDenied(Activity activity, String permission) {
+   public boolean isDoNotAskAgainPermission(Activity activity, String permission) {
       if (PermissionUtils.equalsPermission(permission, Permission.REQUEST_INSTALL_PACKAGES)) {
          return false;
       }
@@ -46,7 +46,7 @@ class PermissionDelegateImplV26 extends PermissionDelegateImplV23 {
          return !PermissionUtils.checkSelfPermission(activity, permission) &&
                  !PermissionUtils.shouldShowRequestPermissionRationale(activity, permission);
       }
-      return super.isPermissionPermanentDenied(activity, permission);
+      return super.isDoNotAskAgainPermission(activity, permission);
    }
 
    @Override
